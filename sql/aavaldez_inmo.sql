@@ -1,0 +1,82 @@
+CREATE DATABASE inmo_aavaldez;
+USE inmo_aavaldez;
+
+CREATE TABLE `propietarios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(255) NOT NULL,
+	`apellido` VARCHAR(255) NOT  NULL,
+	`dni` VARCHAR(16) NOT NULL,
+	`telefono` VARCHAR(160) DEFAULT NULL,
+	`email` VARCHAR(160) DEFAULT NULL,
+	`estado` INT NOT NULL DEFAULT 1,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `inquilinos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(255) NOT NULL,
+	`apellido` VARCHAR(255) NOT NULL,
+	`dni` VARCHAR(16) NOT NULL,
+	`telefono` VARCHAR(160) DEFAULT NULL,
+	`email` VARCHAR(160) DEFAULT NULL,
+	`estado` INT NOT NULL DEFAULT 1,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `inmuebles` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`propietarioId` INT NOT NULL,
+	`uso` INT NOT NULL DEFAULT 1,
+	`tipo` INT NOT NULL DEFAULT 1,
+	`direccion` VARCHAR(255) DEFAULT NULL,
+	`ambientes` VARCHAR(255) DEFAULT NULL,
+	`superficie` INT NOT NULL DEFAULT 0,
+	`latitud` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`longitud` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`estado` INT NOT NULL DEFAULT 1,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `inmuebles` ADD CONSTRAINT `inmuebles_propietarioId` FOREIGN KEY (`propietarioId`) REFERENCES `propietarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `contratos` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`inquilinoId` INT NOT NULL,
+	`inmuebleId` INT NOT NULL,
+	`desde` DATETIME DEFAULT NULL,
+	`hasta` DATETIME DEFAULT NULL,
+	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`estado` INT NOT NULL DEFAULT 1,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `contratos` ADD CONSTRAINT `contratos_inquilinos_inquilinoId` FOREIGN KEY (`inquilinoId`) REFERENCES `inquilinos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `contratos` ADD CONSTRAINT `contratos_inmuebles_inmuebleId` FOREIGN KEY (`inmuebleId`) REFERENCES `inmuebles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `pagos` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`numero` INT NOT NULL,
+	`contratoId` INT NOT NULL,
+	`fecha` DATETIME DEFAULT NULL,
+	`importe` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `pagos` ADD CONSTRAINT `pagos_contratos_contratoId` FOREIGN KEY (`contratoId`) REFERENCES `contratos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `usuarios` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`rol` INT NOT NULL DEFAULT 10,
+	`nombre` VARCHAR(255) NOT NULL,
+	`apellido` VARCHAR(255) NOT  NULL,
+	`email` VARCHAR(160) DEFAULT NULL,
+	`password` VARCHAR(160) DEFAULT NULL,
+	`avatar` VARCHAR(160) DEFAULT NULL,
+	`estado` INT NOT NULL DEFAULT 1,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/* CONTRASEÑA EN AMBOS USUARIOS: asdasd */
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '1', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '2', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
