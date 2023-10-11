@@ -8,6 +8,7 @@ CREATE TABLE `propietarios` (
 	`dni` VARCHAR(16) NOT NULL,
 	`telefono` VARCHAR(160) DEFAULT NULL,
 	`email` VARCHAR(160) DEFAULT NULL,
+	`password` VARCHAR(160) DEFAULT NULL,
 	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -39,9 +39,12 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 				));
 
 				var propietario = contexto.Propietarios.FirstOrDefault(x => x.Email == loginView.Email);
-				if (propietario == null ||hashed != propietario.Password){
+				if (propietario == null || hashed != propietario.Password)
+				{
 					return BadRequest("Nombre de usuario o clave incorrecta");
-				} else {
+				}
+				else
+				{
 					string secretKey = configuracion["TokenAuthentication:SecretKey"] ?? throw new ArgumentNullException(nameof(secretKey));
 					var securityKey = secretKey != null ? new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secretKey)) : null;
 					var credenciales = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -74,7 +77,8 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 		[Authorize]
 		public IActionResult GetPropietario()
 		{
-			try{
+			try
+			{
 				var propietario = User.Identity != null
 					? contexto.Propietarios
 						.Where(x => x.Email == User.Identity.Name)
@@ -88,7 +92,9 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 				}
 
 				return Ok(propietario);
-			} catch (Exception e){
+			}
+			catch (Exception e)
+			{
 				return BadRequest(e.Message);
 			}
 		}

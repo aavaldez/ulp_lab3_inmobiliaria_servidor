@@ -13,15 +13,19 @@ namespace ulp_lab3_inmobiliaria_servidor.Models
 		public string Password { get; set; } = "";
 		public int Estado { get; set; } = 1;
 
-	public Propietario(Propietario propietario)
-	{
-		Id = propietario.Id;
-		Dni = propietario.Dni;
-		Nombre = propietario.Nombre;
-		Apellido = propietario.Apellido;
-		Email = propietario.Email;
-		Telefono = propietario.Telefono;
-	}
+		public Propietario() { }
+
+		public Propietario(Propietario propietario)
+		{
+			Id = propietario.Id;
+			Nombre = propietario.Nombre;
+			Apellido = propietario.Apellido;
+			Dni = propietario.Dni;
+			Telefono = propietario.Telefono;
+			Email = propietario.Email;
+			Password = propietario.Password;
+			Estado = propietario.Estado;
+		}
 
 	}
 }

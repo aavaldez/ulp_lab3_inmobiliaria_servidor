@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 // Add services to the container.
-builder.WebHost.UseUrls("http://localhost:5000","https://localhost:5001", "http://*:5000", "https://*:5001");
+builder.WebHost.UseUrls("http://localhost:5000", "https://localhost:5001", "http://*:5000", "https://*:5001");
 
 builder.Services.AddControllers();
 
@@ -49,26 +49,25 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(
 	options => options.UseMySql(
-		configuration["ConnectionStrings:DefaultConnection"],
+		configuration["ConnectionStrings:MySql"],
 		ServerVersion.AutoDetect(configuration["ConnectionStrings:MySql"])
 	)
 );
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();//comentar para trabajar con http solo
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 //app.UseHttpsRedirection();
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
