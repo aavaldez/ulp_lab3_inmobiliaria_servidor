@@ -9,9 +9,13 @@ CREATE TABLE `propietarios` (
 	`telefono` VARCHAR(160) DEFAULT NULL,
 	`email` VARCHAR(160) DEFAULT NULL,
 	`password` VARCHAR(160) DEFAULT NULL,
+	`avatar` VARCHAR(160) DEFAULT NULL,
 	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, 'Alberto', 'Valdez', '27822898', '2664659200', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
+INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, 'Mariano', 'Luzza', '27822898', '2664659200', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
 
 CREATE TABLE `inquilinos` (
   `id` INT NOT NULL AUTO_INCREMENT,
