@@ -63,6 +63,16 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
+/*
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "data")),
+    RequestPath = "/data"
+});
+*/
+app.UseStaticFiles();
+
 //app.UseHttpsRedirection();
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 

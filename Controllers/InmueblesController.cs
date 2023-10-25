@@ -3,13 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ulp_lab3_inmobiliaria_servidor.Controllers
 {
+	[Route("[Controller]")]
+	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+	[ApiController]
 	public class InmueblesController : ControllerBase
 	{
 		private readonly DataContext contexto;
 		private readonly IConfiguration configuracion;
+
 		public InmueblesController(DataContext context, IConfiguration config)
 		{
 			contexto = context;
@@ -17,7 +27,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 		}
 
 		// GET: Inmuebles/
-		[HttpGet]
+		[HttpGet("Todos")]
 		[Authorize]
 		public IActionResult GetTodos()
 		{

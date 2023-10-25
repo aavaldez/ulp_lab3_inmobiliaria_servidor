@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
+
 namespace ulp_lab3_inmobiliaria_servidor.Controllers
 {
 	[Route("[Controller]")]
@@ -16,6 +17,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 		private readonly DataContext contexto;
 		private readonly IConfiguration configuracion;
 		private string hashSalt = "";
+
 		public PropietariosController(DataContext context, IConfiguration config)
 		{
 			contexto = context;
@@ -100,7 +102,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 		}
 
 		// POST: Propietarios/Editar
-		[HttpPost("Editar")]
+		[HttpPut("Editar")]
 		[Authorize]
 		public IActionResult PutPropietario(Propietario propietario)
 		{
@@ -116,7 +118,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 				if (propietario.Id != propietarioDb.Id) return BadRequest();
 
 				if (
-					string.IsNullOrEmpty(propietario.Dni) ||
+					//long.is.IsNullOrEmpty(propietario.Dni) ||
 					string.IsNullOrEmpty(propietario.Nombre) ||
 					string.IsNullOrEmpty(propietario.Apellido) ||
 					string.IsNullOrEmpty(propietario.Email) ||
