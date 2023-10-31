@@ -1,14 +1,15 @@
 CREATE DATABASE inmo_aavaldez;
-USE inmo_aavaldez;
 
+USE inmo_aavaldez;
 CREATE TABLE `propietarios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  	`id` INT NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(255) NOT NULL,
 	`apellido` VARCHAR(255) NOT  NULL,
 	`dni` BIGINT NOT NULL,
 	`telefono` VARCHAR(160) DEFAULT NULL,
 	`email` VARCHAR(160) DEFAULT NULL,
 	`password` VARCHAR(160) DEFAULT NULL,
+	`telefono` VARCHAR(160) DEFAULT NULL,
 	`avatar` VARCHAR(160) DEFAULT NULL,
 	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
@@ -18,28 +19,29 @@ INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `emai
 INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, 'Mariano', 'Luzza', '27822898', '2664659200', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
 
 CREATE TABLE `inquilinos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  	`id` INT NOT NULL AUTO_INCREMENT,
+	`dni` BIGINT NOT NULL,
 	`nombre` VARCHAR(255) NOT NULL,
 	`apellido` VARCHAR(255) NOT NULL,
-	`dni` VARCHAR(16) NOT NULL,
-	`telefono` VARCHAR(160) DEFAULT NULL,
+	`lugarDeTrabajo` VARCHAR(255) NOT NULL,
 	`email` VARCHAR(160) DEFAULT NULL,
+	`telefono` VARCHAR(160) DEFAULT NULL,
+	`nombreGarante` VARCHAR(255) NOT NULL,
+	`telefonoGarante` VARCHAR(255) NOT NULL,
 	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `inmuebles` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`propietarioId` INT NOT NULL,
-	`uso` INT NOT NULL DEFAULT 1,
-	`tipo` INT NOT NULL DEFAULT 1,
 	`direccion` VARCHAR(255) DEFAULT NULL,
-	`ambientes` INT DEFAULT NULL,
-	`superficie` INT NOT NULL DEFAULT 0,
-	`latitud` DECIMAL(10,2) NOT NULL DEFAULT 0,
-	`longitud` DECIMAL(10,2) NOT NULL DEFAULT 0,
-	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
-	`estado` INT NOT NULL DEFAULT 1,
+	`uso` VARCHAR(255) NOT NULL,
+	`tipo` VARCHAR(255) NOT NULL,
+	`ambientes` INT NOT NULL DEFAULT 1,
+	`precio` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`propietarioId` INT NOT NULL,
+	`estado` INT NOT NULL DEFAULT 0,
+	`imagen` VARCHAR(255) NOT NULL,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -69,19 +71,3 @@ CREATE TABLE `pagos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 ALTER TABLE `pagos` ADD CONSTRAINT `pagos_contratos_contratoId` FOREIGN KEY (`contratoId`) REFERENCES `contratos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-CREATE TABLE `usuarios` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`rol` INT NOT NULL DEFAULT 10,
-	`nombre` VARCHAR(255) NOT NULL,
-	`apellido` VARCHAR(255) NOT  NULL,
-	`email` VARCHAR(160) DEFAULT NULL,
-	`password` VARCHAR(160) DEFAULT NULL,
-	`avatar` VARCHAR(160) DEFAULT NULL,
-	`estado` INT NOT NULL DEFAULT 1,
-  	PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/* CONTRASEÑA EN AMBOS USUARIOS: asdasd */
-INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '1', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
-INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '2', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
