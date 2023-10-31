@@ -1,11 +1,15 @@
 using ulp_lab3_inmobiliaria_servidor.Models;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ulp_lab3_inmobiliaria_servidor.Controllers
 {
+	[Route("[Controller]")]
+	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+	[ApiController]
 	public class ContratosController : ControllerBase
 	{
 		private readonly DataContext contexto;

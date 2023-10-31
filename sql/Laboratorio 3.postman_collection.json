@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "11b574d0-f1bb-4902-8765-291db39a7b89",
+		"name": "Laboratorio 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12634195"
+	},
+	"item": [
+		{
+			"name": "Propietarios",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Email",
+									"value": "aavaldez@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "asd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://192.168.100.2:5000/Propietarios/Login",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Propietarios",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perfil",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzk1NTMwLCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.hrRo8Wcj-lGYvBZlDsFNtNppfA0J3RRAswI74n1TvWg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.100.2:5000/Propietarios/Perfil",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Propietarios",
+								"Perfil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzk1NTMwLCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.hrRo8Wcj-lGYvBZlDsFNtNppfA0J3RRAswI74n1TvWg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Dni\":\"27822899\",\r\n  \"Nombre\":\"Alberto\",\r\n  \"Apellido\":\"Valdez\",\r\n  \"Email\":\"aavaldez@gmail.com\",\r\n  \"Telefono\":\"2664659200\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.100.2:5000/Propietarios/Editar",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Propietarios",
+								"Editar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inmuebles",
+			"item": [
+				{
+					"name": "Todos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzg5NDQ4LCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.z1bDaHxBtb3ZBNN7zsNCTSKTaKUlONC1nq_rnyr0-aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.100.2:5000/Inmuebles/Todos",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Inmuebles",
+								"Todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://192.168.100.2:5000/Inmuebles/Crear",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Inmuebles",
+								"Crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzk3NDIxLCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.BGl7yMOFtC1Lm1_WwleixItrBSJmTD6Nlueuq8pqUwI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://192.168.100.2:5000/Inmuebles/Cambiar_Estado/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Inmuebles",
+								"Cambiar_Estado",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alquilados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzg5NDQ4LCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.z1bDaHxBtb3ZBNN7zsNCTSKTaKUlONC1nq_rnyr0-aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.100.2:5000/Inmuebles/Alquilados",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Inmuebles",
+								"Alquilados"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inquilinos",
+			"item": [
+				{
+					"name": "Obtener",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzg5NDQ4LCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.z1bDaHxBtb3ZBNN7zsNCTSKTaKUlONC1nq_rnyr0-aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.100.2:5000/Inquilinos/Obtener/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Inquilinos",
+								"Obtener",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contratos",
+			"item": [
+				{
+					"name": "Obtener",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzg5NDQ4LCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.z1bDaHxBtb3ZBNN7zsNCTSKTaKUlONC1nq_rnyr0-aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.100.2:5000/Contratos/Obtener/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Contratos",
+								"Obtener",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pagos",
+			"item": [
+				{
+					"name": "Obtener",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWF2YWxkZXpAZ21haWwuY29tIiwiSWQiOiIxIiwiZXhwIjoxNjk4Nzg5NDQ4LCJpc3MiOiJ1bHBfbGFib3JhdG9yaW8zX2lubW9iaWxpYXJpYSIsImF1ZCI6Im1vYmlsZUFQUCJ9.z1bDaHxBtb3ZBNN7zsNCTSKTaKUlONC1nq_rnyr0-aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.100.2:5000/Pagos/Obtener/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"2"
+							],
+							"port": "5000",
+							"path": [
+								"Pagos",
+								"Obtener",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

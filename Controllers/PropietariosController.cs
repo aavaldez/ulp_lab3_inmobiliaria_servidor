@@ -40,6 +40,8 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 					numBytesRequested: 256 / 8
 				));
 
+				Console.WriteLine(hashed);
+
 				var propietario = contexto.Propietarios.FirstOrDefault(x => x.Email == loginView.Email);
 				if (propietario == null || hashed != propietario.Password)
 				{
