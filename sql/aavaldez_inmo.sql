@@ -9,7 +9,6 @@ CREATE TABLE `propietarios` (
 	`telefono` VARCHAR(160) DEFAULT NULL,
 	`email` VARCHAR(160) DEFAULT NULL,
 	`password` VARCHAR(160) DEFAULT NULL,
-	`telefono` VARCHAR(160) DEFAULT NULL,
 	`avatar` VARCHAR(160) DEFAULT NULL,
 	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
