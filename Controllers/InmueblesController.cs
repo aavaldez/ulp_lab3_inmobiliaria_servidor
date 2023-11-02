@@ -46,7 +46,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 		// PUT: Inmuebles/Cambiar_Estado/{id}
 		[HttpPut("Cambiar_Estado/{id}")]
 		[Authorize]
-		public IActionResult PutEstado(int id, [FromBody] int estado)
+		public IActionResult PutEstado(int id, [FromBody] Boolean estado)
 		{
 			try
 			{

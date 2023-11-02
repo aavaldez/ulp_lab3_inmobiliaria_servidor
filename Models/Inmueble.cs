@@ -32,11 +32,8 @@ namespace ulp_lab3_inmobiliaria_servidor.Models
 		public int Tipo { get; set; } = 1;
 		public string Direccion { get; set; } = "";
 		public int Ambientes { get; set; } = 1;
-		public int Superficie { get; set; } = 0;
-		public decimal Latitud { get; set; } = 0;
-		public decimal Longitud { get; set; } = 0;
-		public decimal Valor { get; set; } = 0;
-		public int Estado { get; set; } = 1;
+		public decimal Precio { get; set; } = 0;
+		public Boolean Estado { get; set; } = true;
 		public String ? Imagen { get; set; }
 
 		[ForeignKey(nameof(Propietario))]
