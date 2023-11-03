@@ -14,8 +14,8 @@ CREATE TABLE `propietarios` (
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, 'Alberto', 'Valdez', '27822898', '2664659200', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
-INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, 'Mariano', 'Luzza', '27822898', '2664659200', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
+INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, 'Alberto', 'Valdez', '27822898', '2664659200', 'aavaldez@gmail.com', 'pOjBQ7hZuhRlsXn9P3cmGoibbWuvjSbJjkFgfeVDzQg==', NULL, '1');
+INSERT INTO `propietarios` (`id`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, 'Mariano', 'Luzza', '27822898', '2664659200', 'mluzza@gmail.com', 'pOjBQ7hZuhRlsXn9P3cmGoibbWuvjSbJjkFgfeVDzQg==', NULL, '1');
 
 CREATE TABLE `inquilinos` (
   	`id` INT NOT NULL AUTO_INCREMENT,
@@ -34,8 +34,8 @@ CREATE TABLE `inquilinos` (
 CREATE TABLE `inmuebles` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`direccion` VARCHAR(255) DEFAULT NULL,
-	`uso` VARCHAR(255) NOT NULL,
-	`tipo` VARCHAR(255) NOT NULL,
+	`uso` INT NOT NULL,
+	`tipo` INT NOT NULL,
 	`ambientes` INT NOT NULL DEFAULT 1,
 	`precio` DECIMAL(10,2) NOT NULL DEFAULT 0,
 	`propietarioId` INT NOT NULL,

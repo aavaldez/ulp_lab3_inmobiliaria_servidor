@@ -42,9 +42,12 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 
 				var contrato = contexto.Contratos
 					.Include(i => i.Inquilino)
-					.FirstOrDefault(i => i.Id == inmueble_id);
+					.FirstOrDefault(i => i.InmuebleId == inmueble_id);
 
 				if (contrato == null) return NotFound();
+
+				Console.WriteLine(inmueble_id);
+				Console.WriteLine(contrato);
 
 				return Ok(contrato);
 			}

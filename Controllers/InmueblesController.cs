@@ -43,6 +43,28 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 			}
 		}
 
+		// GET: Inmuebles/
+		[HttpGet("Obtener/{inmueble_id}")]
+		[Authorize]
+		public IActionResult GetInmueble(int inmueble_id)
+		{
+			try
+			{
+				int.TryParse(User.FindFirstValue("Id"), out int userId);
+				var usuario = User.Identity != null
+					? contexto.Propietarios.Find(userId)
+					: null;
+
+				if (usuario == null) return NotFound();
+
+				return Ok(contexto.Inmuebles.Find(inmueble_id));
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e.Message);
+			}
+		}
+
 		// PUT: Inmuebles/Cambiar_Estado/{id}
 		[HttpPut("Cambiar_Estado/{id}")]
 		[Authorize]
@@ -61,7 +83,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 
 				if (inmueble == null) return NotFound();
 
-				if (inmueble.Id != usuario.Id) return Forbid();
+				if (inmueble.PropietarioId != usuario.Id) return Forbid();
 
 				inmueble.Estado = estado;
 				contexto.SaveChanges();

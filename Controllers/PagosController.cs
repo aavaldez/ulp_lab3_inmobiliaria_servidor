@@ -37,7 +37,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 				var contrato = contexto.Contratos.Include(c => c.Inmueble).FirstOrDefault(c => c.Id == contrato_id);
 				if (contrato == null) return NotFound();
 
-				if (contrato.InmuebleId != usuario.Id) return Unauthorized();
+				if (contrato.Inmueble.PropietarioId != usuario.Id) return Unauthorized();
 
 				var pagos = contexto.Pagos.Where(p => p.ContratoId == contrato_id);
 
