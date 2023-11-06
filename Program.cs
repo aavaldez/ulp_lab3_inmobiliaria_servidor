@@ -71,7 +71,9 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/data"
 });
 */
+app.UseDefaultFiles();
 app.UseStaticFiles();
+
 
 //app.UseHttpsRedirection();
 //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
