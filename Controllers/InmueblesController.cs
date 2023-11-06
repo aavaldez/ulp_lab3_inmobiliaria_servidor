@@ -14,11 +14,13 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 	{
 		private readonly DataContext contexto;
 		private readonly IConfiguration configuracion;
+		private readonly IWebHostEnvironment environment;
 
-		public InmueblesController(DataContext context, IConfiguration config)
+		public InmueblesController(DataContext context, IConfiguration config, IWebHostEnvironment env)
 		{
 			contexto = context;
 			configuracion = config;
+			environment = env;
 		}
 
 		// GET: Inmuebles/
@@ -68,7 +70,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 		// PUT: Inmuebles/Cambiar_Estado/{id}
 		[HttpPut("Cambiar_Estado/{id}")]
 		[Authorize]
-		public IActionResult PutEstado(int id, [FromBody] Boolean estado)
+		public IActionResult PutEstado([FromBody] Inmueble i)
 		{
 			try
 			{
@@ -79,13 +81,14 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 
 				if (usuario == null) return NotFound();
 
-				var inmueble = contexto.Inmuebles.Find(id);
+				var inmueble = contexto.Inmuebles.Find(i.Id);
 
 				if (inmueble == null) return NotFound();
 
 				if (inmueble.PropietarioId != usuario.Id) return Forbid();
 
-				inmueble.Estado = estado;
+				inmueble.Estado = i.Estado;
+				contexto.Update(inmueble);
 				contexto.SaveChanges();
 
 				return Ok(inmueble);
@@ -128,5 +131,52 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 			}
 		}
 
+		// POST: Inmuebles/Crear
+		[HttpPost("Crear")]
+		[Authorize]
+		public async Task<IActionResult> PostCrear([FromForm] Inmueble inmueble)
+		{
+			try
+			{
+				int.TryParse(User.FindFirstValue("Id"), out int userId);
+				var usuario = User.Identity != null
+					? contexto.Propietarios.Find(userId)
+					: null;
+
+				if (usuario == null)
+					return NotFound();
+
+				inmueble.PropietarioId = usuario.Id;
+				inmueble.Estado = false;
+				contexto.Inmuebles.Add(inmueble);
+
+				contexto.SaveChanges();
+				if (inmueble.ImagenFileName != null && inmueble.Id > 0)
+				{
+					string wwwPath = environment.WebRootPath;
+					string path = Path.Combine(wwwPath, "Uploads");
+					if (!Directory.Exists(path))
+					{
+						Directory.CreateDirectory(path);
+					}
+
+					string fileName = "imagen_" + inmueble.Id + Path.GetExtension(inmueble.ImagenFileName.FileName);
+					string pathCompleto = Path.Combine(path, fileName);
+					inmueble.Imagen = Path.Combine("/Uploads", fileName);
+					using (FileStream stream = new FileStream(pathCompleto, FileMode.Create))
+					{
+						inmueble.ImagenFileName.CopyTo(stream);
+					}
+					contexto.Update(inmueble);
+					contexto.SaveChanges();
+				}
+
+				return Ok(inmueble);
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.Message);
+			}
+		}
 	}
 }

@@ -34,7 +34,9 @@ namespace ulp_lab3_inmobiliaria_servidor.Models
 		public int Ambientes { get; set; } = 1;
 		public decimal Precio { get; set; } = 0;
 		public Boolean Estado { get; set; } = true;
-		public String ? Imagen { get; set; }
+		public String? Imagen { get; set; }
+		[NotMapped]
+		public IFormFile? ImagenFileName { get; set; }
 
 		[ForeignKey(nameof(Propietario))]
 		public int PropietarioId { get; set; }
