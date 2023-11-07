@@ -11,6 +11,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Models
 		public string? Telefono { get; set; }
 		public string Email { get; set; } = "";
 		public string Password { get; set; } = "";
+		public string Avatar { get; set; } = "";
 		public int Estado { get; set; } = 1;
 
 		public Propietario() { }
@@ -24,6 +25,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Models
 			Telefono = propietario.Telefono;
 			Email = propietario.Email;
 			Password = propietario.Password;
+			Avatar = propietario.Avatar;
 			Estado = propietario.Estado;
 		}
 

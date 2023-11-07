@@ -68,7 +68,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 		}
 
 		// PUT: Inmuebles/Cambiar_Estado/{id}
-		[HttpPut("Cambiar_Estado/{id}")]
+		[HttpPut("Cambiar_Estado")]
 		[Authorize]
 		public IActionResult PutEstado([FromBody] Inmueble i)
 		{
@@ -87,7 +87,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 
 				if (inmueble.PropietarioId != usuario.Id) return Forbid();
 
-				inmueble.Estado = i.Estado;
+				inmueble.Estado = !i.Estado;
 				contexto.Update(inmueble);
 				contexto.SaveChanges();
 
