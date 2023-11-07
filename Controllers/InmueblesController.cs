@@ -147,6 +147,7 @@ namespace ulp_lab3_inmobiliaria_servidor.Controllers
 					return NotFound();
 
 				inmueble.PropietarioId = usuario.Id;
+				inmueble.Propietario = usuario;
 				inmueble.Estado = false;
 				contexto.Inmuebles.Add(inmueble);
 

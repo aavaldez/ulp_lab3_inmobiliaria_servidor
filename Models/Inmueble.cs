@@ -13,12 +13,11 @@ namespace ulp_lab3_inmobiliaria_servidor.Models
 		public int Ambientes { get; set; } = 1;
 		public decimal Precio { get; set; } = 0;
 		public Boolean Estado { get; set; } = true;
-		public string? Imagen { get; set; }
+		public string? Imagen { get; set; } = "";
 		[NotMapped]
 		public IFormFile? ImagenFileName { get; set; }
-
 		[ForeignKey(nameof(Propietario))]
-		public int PropietarioId { get; set; }
-		public Propietario Propietario { get; set; } = null;
+		public int? PropietarioId { get; set; }
+		public Propietario? Propietario { get; set; } = null;
 	}
 }
